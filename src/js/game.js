@@ -5,6 +5,8 @@
     this.platforms = null;
     this.player = null;
     this.stars = null;
+    this.score = 0;
+    this.scoreText = null;
   }
 
   Game.prototype = {
@@ -65,6 +67,8 @@
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
       }
 
+      this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
     },
 
     update: function () {
@@ -109,6 +113,10 @@
 
       // Removes the star from the screen
       star.kill();
+
+      //  Add and update the score
+      this.score += 10;
+      this.scoreText.text = 'Score: ' + this.score;
 
     }
 
