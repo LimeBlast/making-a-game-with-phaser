@@ -9,6 +9,7 @@ var gulp = require('gulp')
   , jshint = require('gulp-jshint')
   , uglify = require('gulp-uglify')
   , connect = require('gulp-connect')
+  , ghpages = require('gh-pages')
   , paths;
 
 paths = {
@@ -94,3 +95,7 @@ gulp.task('watch', function () {
 
 gulp.task('default', ['connect', 'watch']);
 gulp.task('build', ['copy', 'uglify', 'minifycss', 'processhtml', 'minifyhtml']);
+
+gulp.task("deploy", function (cb) {
+  ghpages.publish(paths.dist, {}, cb);
+});
